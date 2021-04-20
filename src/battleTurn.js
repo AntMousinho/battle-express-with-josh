@@ -5,13 +5,7 @@ class BattleTurn {
     }
 
     switchTurn(){
-    //     if(this.player1turn){
-    //         this.player1turn = false;
-    //     } else{
-    //         this.player1turn = true;
-    //     }
 		return this.player1turn = !this.player1turn
-		
     }
 
 	currentTurn() {

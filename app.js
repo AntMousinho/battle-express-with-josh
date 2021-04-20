@@ -26,7 +26,9 @@ app.post('/battle', (req, res) => {
 			hp: player2.hp
 		},
 		currentTurn: battleTurn.currentTurn().name
-	});
+	    ,
+	    attack: battleTurn.damage()
+	})
 })
 
 
