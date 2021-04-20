@@ -1,7 +1,7 @@
 class Player{
-    constructor(name){
+    constructor(name, hp = 100){
         this.name = name;
-        this.hp = 100;
+        this.hp = hp;
     }
 
     takeDamage(damage){

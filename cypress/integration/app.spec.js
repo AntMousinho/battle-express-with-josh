@@ -41,6 +41,6 @@ describe('Testing battle page: ', () => {
 	})
 
 	it('displays attack button', () => {
-		cy.get('attack-button').should('have.value', 'Attack');
+		cy.get('#attack-button').should('have.value', 'Attack');
 	})
 })

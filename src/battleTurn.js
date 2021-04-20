@@ -5,12 +5,21 @@ class BattleTurn {
     }
 
     switchTurn(){
-        if(this.player1turn){
-            this.player1turn = false;
-        } else{
-            this.player1turn = true;
-        }
+    //     if(this.player1turn){
+    //         this.player1turn = false;
+    //     } else{
+    //         this.player1turn = true;
+    //     }
+		return this.player1turn = !this.player1turn
+		
     }
+
+	currentTurn() {
+		if(this.player1turn) {
+			return this.playerArray[0]
+		}
+		return this.playerArray[1];
+	}
 
     damage(){ 
         if(this.player1turn = true){
@@ -18,7 +27,20 @@ class BattleTurn {
         } else{
             this.playerArray[0].takeDamage(10)
         }
+		this.checkGameOver();
         this.switchTurn();
     }
+
+	checkGameOver() {
+		let gameOver = false;
+		this.playerArray.forEach(player => {
+			if(player.hp === 0) {
+				gameOver = true;
+			}
+		})
+		return gameOver;
+	}
     
 }
+
+module.exports = BattleTurn;
