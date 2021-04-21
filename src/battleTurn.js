@@ -1,7 +1,12 @@
 class BattleTurn {
-    constructor(playerArray = []){
-        this.playerArray = playerArray;         
+    constructor(){
+        this.playerArray = [];         
+		this.gameOver = false;
     }
+
+	clearPlayers() {
+		this.playerArray = []
+	}
 
 	addPlayers(player1, player2){
 		return this.playerArray.push(player1, player2);
@@ -22,13 +27,12 @@ class BattleTurn {
     }
 
 	checkGameOver() {
-		let gameOver = false;
 		this.playerArray.forEach(player => {
 			if(player.hp === 0) {
-				gameOver = true;
+				this.gameOver = true;
 			}
 		})
-		return gameOver;
+		return this.gameOver;
 	}
     
 }

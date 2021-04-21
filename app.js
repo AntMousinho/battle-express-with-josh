@@ -11,6 +11,7 @@ app.set('views', 'views');
 app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => {
+	battleTurn.clearPlayers();
 	res.render('pages/index')
 })
 
@@ -19,16 +20,25 @@ app.post('/battle', (req, res) => {
 	const player2 = new Player(req.body.player2Name);
 	battleTurn.addPlayers(player1, player2)
 	res.render('pages/battle', { 
-		player1: {
-			name: player1.name,
-			hp: player1.hp
-		},
-		player2: {
-			name: player2.name,
-			hp: player2.hp
-		},
-		currentTurn: battleTurn.currentTurn().name
+		player: battleTurn.playerArray[0],
+		opponent: battleTurn.playerArray[1]
 	})
+})
+
+
+
+app.get('/battle', (req, res) => {
+	if(battleTurn.gameOver) {
+		res.render('pages/victory', {
+			champion: 'Antony',
+			loser: 'Josh'
+		})
+	} else {
+		res.render('pages/battle', { 
+			player: battleTurn.playerArray[0],
+			opponent: battleTurn.playerArray[1]
+		})
+	}
 })
 
 app.post('/turn', (req,res) => {
@@ -43,7 +53,6 @@ app.post('/turn', (req,res) => {
 	})
     
 })
-
 
 
 app.listen(port, () => {

@@ -7,10 +7,8 @@ class Player{
     takeDamage(damage){
         if(damage > this.hp){
             return this.hp = 0;
-        } else{
-        this.hp = this.hp - damage;
-        return this.hp;
         }
+		return this.hp -= damage;
     }
 }
 
