@@ -12,6 +12,7 @@ app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => {
 	battleTurn.clearPlayers();
+	battleTurn.gameOver = false;
 	res.render('pages/index')
 })
 
@@ -28,12 +29,11 @@ app.post('/battle', (req, res) => {
 
 
 app.get('/battle', (req, res) => {
-	if(battleTurn.gameOver) {
-		res.render('pages/victory', {
-			champion: 'Antony',
-			loser: 'Josh'
-		})
+	console.log(battleTurn.checkGameOver())
+	if(battleTurn.checkGameOver() === true) {
+		res.redirect('/victory');
 	} else {
+		battleTurn.switchTurn()
 		res.render('pages/battle', { 
 			player: battleTurn.playerArray[0],
 			opponent: battleTurn.playerArray[1]
@@ -52,6 +52,13 @@ app.post('/turn', (req,res) => {
 		damage: damage
 	})
     
+})
+
+app.get('/victory', (req,res) => {
+res.render('pages/victory', {
+	champion: battleTurn.playerArray[0].name,
+	loser: battleTurn.playerArray[1].name
+})
 })
 
 
