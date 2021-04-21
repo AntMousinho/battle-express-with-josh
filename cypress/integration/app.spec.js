@@ -43,4 +43,21 @@ describe('Testing battle page: ', () => {
 	it('displays attack button', () => {
 		cy.get('#attack-button').should('have.value', 'Attack');
 	})
+
+})
+
+describe('Testing turn page: ', () => {
+	beforeEach(() => {
+		cy.visit('/');
+		cy.get('#player1-input').type('Antony');
+		cy.get('#player2-input').type('Josh');
+		cy.get('#submit-names').click();
+		cy.get('#attack-button').click();
+	})
+
+	it("Attack message:", function(){
+        cy.url().should('include', '/turn');
+		cy.contains("Antony attacked Josh and did 10 damage.")
+	})
+
 })

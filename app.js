@@ -5,6 +5,8 @@ app.use(express.urlencoded({ extended: false }));
 const BattleTurn = require('./src/battleTurn');
 const Player = require('./src/player');
 
+const battleTurn = new BattleTurn();
+
 app.set('views', 'views');
 app.set('view engine', 'ejs');
 
@@ -15,7 +17,7 @@ app.get('/', (req, res) => {
 app.post('/battle', (req, res) => {
 	const player1 = new Player(req.body.player1Name);
 	const player2 = new Player(req.body.player2Name);
-	const battleTurn = new BattleTurn([player1, player2]);
+	battleTurn.addPlayers(player1, player2)
 	res.render('pages/battle', { 
 		player1: {
 			name: player1.name,
@@ -26,9 +28,20 @@ app.post('/battle', (req, res) => {
 			hp: player2.hp
 		},
 		currentTurn: battleTurn.currentTurn().name
-	    ,
-	    attack: battleTurn.damage()
 	})
+})
+
+app.post('/turn', (req,res) => {
+	const attackPlayer = battleTurn.currentTurn()
+	const recievingPlayer = battleTurn.playerArray[1];
+	const damage = 10;
+	battleTurn.damage(damage)
+	res.render('pages/turn', {
+		attackingPlayer: attackPlayer,
+		recievingPlayer: recievingPlayer,
+		damage: damage
+	})
+    
 })
 
 

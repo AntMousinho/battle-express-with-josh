@@ -1,26 +1,22 @@
 class BattleTurn {
-    constructor(playerArray){
-        this.player1turn = true;
+    constructor(playerArray = []){
         this.playerArray = playerArray;         
     }
 
+	addPlayers(player1, player2){
+		return this.playerArray.push(player1, player2);
+	}
+
     switchTurn(){
-		return this.player1turn = !this.player1turn
+		return this.playerArray.reverse();
     }
 
 	currentTurn() {
-		if(this.player1turn) {
-			return this.playerArray[0]
-		}
-		return this.playerArray[1];
+			return this.playerArray[0];
 	}
 
-    damage(){ 
-        if(this.player1turn = true){
-            this.playerArray[1].takeDamage(10)
-        } else{
-            this.playerArray[0].takeDamage(10)
-        }
+    damage(hpPoints){ 
+        this.playerArray[1].takeDamage(hpPoints)
 		this.checkGameOver();
         this.switchTurn();
     }
