@@ -42,9 +42,9 @@ app.get('/battle', (req, res) => {
 })
 
 app.post('/turn', (req,res) => {
-	const attackPlayer = battleTurn.currentTurn()
+	const attackPlayer = battleTurn.currentTurn();
 	const recievingPlayer = battleTurn.playerArray[1];
-	const damage = 10;
+	const damage = Math.floor(Math.random()*101);
 	battleTurn.damage(damage)
 	res.render('pages/turn', {
 		attackingPlayer: attackPlayer,

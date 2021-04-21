@@ -48,6 +48,7 @@ describe('Testing battle page: ', () => {
 
 describe('Testing turn page: ', () => {
 	beforeEach(() => {
+		cy.intercept('/turn', )
 		cy.visit('/');
 		cy.get('#player1-input').type('Antony');
 		cy.get('#player2-input').type('Josh');

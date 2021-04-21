@@ -22,8 +22,6 @@ class BattleTurn {
 
     damage(hpPoints){ 
         this.playerArray[1].takeDamage(hpPoints)
-		// this.checkGameOver();
-        // this.switchTurn();
     }
 
 	checkGameOver() {
