@@ -17,8 +17,13 @@ app.get('/', (req, res) => {
 })
 
 app.post('/battle', (req, res) => {
+	let player2
 	const player1 = new Player(req.body.player1Name);
-	const player2 = new Player(req.body.player2Name);
+	if(req.body.player2Name === ''){
+		player2 = new Player('Computer');
+	} else{
+	player2 = new Player(req.body.player2Name);
+	}
 	battleTurn.addPlayers(player1, player2)
 	res.render('pages/battle', { 
 		player: battleTurn.playerArray[0],
@@ -31,8 +36,11 @@ app.post('/battle', (req, res) => {
 app.get('/battle', (req, res) => {
 	if(battleTurn.checkGameOver() === true) {
 		res.redirect('/victory');
+	} else if(battleTurn.playerArray[1].name === 'Computer'){
+		res.redirect('/computerTurn');
 	} else {
 		battleTurn.switchTurn()
+	
 		res.render('pages/battle', { 
 			player: battleTurn.playerArray[0],
 			opponent: battleTurn.playerArray[1]
@@ -60,6 +68,22 @@ res.render('pages/victory', {
 	loser: battleTurn.playerArray[1].name
 })
 })
+
+app.get('/computerTurn', (req, res) => {
+	battleTurn.switchTurn()
+	const attackPlayer = battleTurn.playerArray[0];
+	const recievingPlayer = battleTurn.playerArray[1];
+	const damage = Math.floor(Math.random()*101);
+	// const damage = 10;
+	battleTurn.damage(damage)
+	res.render('pages/computerTurn', {
+		attackingPlayer: attackPlayer,
+		recievingPlayer: recievingPlayer,
+		damage: damage
+	})
+})
+
+
 
 
 app.listen(port, () => {

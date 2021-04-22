@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jasmine",
     "e2e": "cypress open",
-	"nodemon" : "nodemon app.js"
+    "nodemon": "nodemon app.js"
   },
   "repository": {
     "type": "git",
