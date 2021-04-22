@@ -16,10 +16,6 @@ class BattleTurn {
 		return this.playerArray.reverse();
     }
 
-	currentTurn() {
-			return this.playerArray[0];
-	}
-
     damage(hpPoints){ 
         this.playerArray[1].takeDamage(hpPoints)
     }

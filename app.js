@@ -29,7 +29,6 @@ app.post('/battle', (req, res) => {
 
 
 app.get('/battle', (req, res) => {
-	console.log(battleTurn.checkGameOver())
 	if(battleTurn.checkGameOver() === true) {
 		res.redirect('/victory');
 	} else {
@@ -42,9 +41,10 @@ app.get('/battle', (req, res) => {
 })
 
 app.post('/turn', (req,res) => {
-	const attackPlayer = battleTurn.currentTurn();
+	const attackPlayer = battleTurn.playerArray[0];
 	const recievingPlayer = battleTurn.playerArray[1];
 	const damage = Math.floor(Math.random()*101);
+	// const damage = 10;
 	battleTurn.damage(damage)
 	res.render('pages/turn', {
 		attackingPlayer: attackPlayer,

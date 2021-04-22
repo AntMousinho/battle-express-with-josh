@@ -9,11 +9,11 @@
 <body>
 	<div id="player1-Info">
 		<h1>You: <%= player.name %></h1>
-		<h2 id="player1hp">HP: <%= player.hp %></h2>
+		<h2 id="player1hp">HP: <span id="p1-remaining-health"><%= player.hp %></span></h2>
 	</div>
 	<div id="player2-Info">
 		<h1>Opponent: <%= opponent.name %></h1>
-		<h2 id="player2hp">HP: <%= opponent.hp %></h2>
+		<h2 id="player2hp">HP: <span id="p2-remaining-health"><%= opponent.hp %></span></h2>
 	</div>
 	<h2><%= player.name %>'s turn</h2>
 	<form action="/turn" method="POST">

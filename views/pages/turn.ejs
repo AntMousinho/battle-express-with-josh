@@ -6,7 +6,7 @@
  <title>Document</title>
 </head>
 <body>
-    <p> <%= attackingPlayer.name %> attacked <%= recievingPlayer.name %> and did <%= damage %> damage. </p>
+    <p> <%= attackingPlayer.name %> attacked <%= recievingPlayer.name %> and did <span id="turn-damage"><%= damage %></span> damage. </p>
     <form action="/battle" method="GET">
         <input id="next-button" type="submit" value="Continue">
     </form>
